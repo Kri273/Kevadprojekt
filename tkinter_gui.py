@@ -24,8 +24,6 @@ def display_result():
         # Paneb "Food results" alla paremasse äärde
         result_window.geometry(f"+{root.winfo_x() + root.winfo_width() - 300}+{root.winfo_y() + root.winfo_height() - 100}")
 
-
-
         result_label = Label(result_window, text=f"Food: {food_name}\nCalories: {calories}\nServing: 100g")
         calorie_value = int(calories.strip().split()[0])
 
@@ -110,3 +108,4 @@ my_list.bind('<Return>', enter_pressed)
 conn.close()
 root.mainloop()
 
+# Tore comment
