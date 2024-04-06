@@ -7,41 +7,37 @@ root.iconbitmap('food.ico')
 root.geometry("500x500")
 
 
-result_window = None
-# Uue akna tegemine
+# Lisa andmete näitamine
+label_displayed = False
+my_label = None
 def display_result():
     selected_item = my_list.get(ANCHOR)
-    global result_window
-    if result_window:
-        result_window.destroy()
-
+    global label_displayed
+    global my_label
+    
     if selected_item:
         food_name, calories = selected_item.split(": ")
-        result_window = Toplevel(root)
-        result_window.title("Food Result")
-        result_window.iconbitmap('food.ico')
-        result_window.geometry("300x100")
-        # Paneb "Food results" alla paremasse äärde
-        result_window.geometry(f"+{root.winfo_x() + root.winfo_width() - 300}+{root.winfo_y() + root.winfo_height() - 100}")
-
-        result_label = Label(result_window, text=f"Food: {food_name}\nCalories: {calories}\nServing: 100g")
         calorie_value = int(calories.strip().split()[0])
+        if not label_displayed:
+            my_label = Label(root, text=f"Food: {food_name}\nCalories: {calories}\nServing: 100g", font=("Arial", 18))
+            my_label.pack(pady=20)
+            label_displayed = True
+        else:
+            my_label.config(text=f"Food: {food_name}\nCalories: {calories}\nServing: 100g")
 
-
-
-        # Set color based on calorie value
+        # Värvi määramine kalorite väärtusel
         if calorie_value < 50:
-            result_label.config(fg="green")
+            my_label.config(fg="green")
         elif calorie_value > 120:
-            result_label.config(fg="red")
+            my_label.config(fg="red")
+        else:
+            my_label.config(fg="black")
 
-        result_label.pack(pady=20)
+
 
 # Uuendab listi kasti
 def update(data):
-    # Tühjendab
     my_list.delete(0, END)
-    # Sorteerib tähestikulises järjekorras
     data.sort()
 
     # Lisab näited kasti
@@ -49,12 +45,8 @@ def update(data):
         my_list.insert(END,  item)
 # Uuenda sisestuskasti kui listis vajutatakse    
 def fillout(e):
-    # Kustutab tekstikasti kirjutatud asjad
     my_entry.delete(0, END)
-    
-    # Lisab tekstikasti valitud eseme
     my_entry.insert(0, my_list.get(ANCHOR))
-
 
 def check(e):
     typed = my_entry.get().lower()
@@ -67,27 +59,29 @@ def check(e):
             if typed.lower() in item.lower():
                 data.append(item)
     update(data)
-# Enter vajutamisel avab uue akna
+# Enteri vajutamine
 def enter_pressed(e):
-
     display_result()
     
     
 
 # Teeb sildi
 my_label = Label(root, text="Search for your food...", font=("Arial", 18), fg="grey")
-my_label.pack(pady=20)
+my_label.pack(pady=5)
 
 # Sisestuskast
 my_entry = Entry(root, font=("Arial", 20))
-my_entry.pack(pady=10)
+my_entry.pack(pady=5)
 
+# Teeb nupu
+button = Button(root, text="Search", font=("Arial", 12), fg="blue", bg="lightblue", command=display_result)
+button.pack(pady=5, padx=5)
 
 # Listi kast
 my_list = Listbox(root, width=50)
-my_list.pack(pady=40)
+my_list.pack(pady=20)
 
-
+# Andmebaasist andmete võtmine
 conn = sqlite3.connect('calories.db')
 cursor = conn.cursor()
 
@@ -97,15 +91,11 @@ names = [f"{name}: {calories}" for name, calories in data]
 update(names)
 
 
-
 # Listile vajutamiseks
 my_list.bind("<<ListboxSelect>>", fillout)
 my_entry.bind("<KeyRelease>", check)
 my_list.bind('<Return>', enter_pressed)
 
 
-
 conn.close()
 root.mainloop()
-
-# Tore comment
