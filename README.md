@@ -11,9 +11,9 @@ Väike programm toiduainete kalorite otsimiseks.
 
 ## Installatsioon
 
-Et kasutada Kilokalorite otsimise programmi on vaja alla laadida Kevadprojekti Zip fail. 
-Alla tuleks laadida ka erinevad moodulid: 
-- pip install beautifulsoup4
-- pip install requests
-(tkinter ja sqlite3 peaks olemas olema vist.)
-Sealt tuleks vajutada tööle python'i programm nimega "tkinter_gui.py". 
+- Et kasutada Kilokalorite otsimise programmi on vaja alla laadida Kevadprojekti Zip fail. 
+- Alla tuleks laadida ka erinevad moodulid: 
+  - pip install beautifulsoup4
+  - pip install requests
+  - (tkinter ja sqlite3 peaks olemas olema vist.)
+- Sealt tuleks vajutada tööle python'i programm nimega "tkinter_gui.py". 
