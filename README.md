@@ -9,7 +9,7 @@ Väike programm toiduainete kalorite otsimiseks.
 - Nimekirja kastis olevale toidule vajutades läheb toit sisestuskasti.
 - Omakorda enter või search nuppu vajutades tekib nimekirja kasti alla veel lisainfot toidu kohta (toiduaine hulk).
 
-##Installatsioon
+## Installatsioon
 
 Et kasutada Kilokalorite otsimise programmi on vaja alla laadida Kevadprojekti Zip fail. 
 Alla tuleks laadida ka erinevad moodulid: 
