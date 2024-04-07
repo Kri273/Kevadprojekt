@@ -16,4 +16,8 @@ Väike programm toiduainete kalorite otsimiseks.
   - pip install beautifulsoup4
   - pip install requests
   - (tkinter ja sqlite3 peaks olemas olema vist.)
-- Sealt tuleks vajutada tööle python'i programm nimega "tkinter_gui.py". 
+- Sealt tuleks vajutada tööle python'i programm nimega "tkinter_gui.py".
+
+
+## Esitlus
+- https://docs.google.com/presentation/d/14RcozlsFR41s7s_3O4DmtbIVSNfLW4QurVtjlbndXHA/edit?usp=sharing
